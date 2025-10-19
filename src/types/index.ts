@@ -65,8 +65,9 @@ export interface GetNoteResponse {
 }
 
 export interface CreateNoteRequest {
-  content: string;
   patientId: number;
+  inputType: 'TEXT' | 'AUDIO';
+  rawText?: string;
 }
 
 export interface UpdateNoteRequest {
