@@ -26,13 +26,13 @@ export default function NoteDetailPage({ note }: NoteDetailPageProps) {
           </div>
           <div className="flex items-center space-x-3">
             <Link 
-              href="/notes" 
+              href="/patients" 
               className="inline-flex items-center px-4 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors"
             >
               <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              Back to Notes
+              Back to Patients
             </Link>
           </div>
         </div>

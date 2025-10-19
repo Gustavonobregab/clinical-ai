@@ -63,14 +63,6 @@ export default function PatientNotesPage({ patient, notes }: PatientNotesPagePro
                       </h3>
                     )}
                     
-                    {note.summary && (
-                      <div className="bg-green-50 rounded-md p-3 mb-3">
-                        <p className="text-sm text-green-600 mb-1">Summary:</p>
-                        <p className="text-gray-900 text-sm">
-                          {note.summary}
-                        </p>
-                      </div>
-                    )}
                     
                     <p className="text-xs text-gray-500 mt-2">
                       {new Date(note.createdAt).toLocaleDateString('en-US')} at {new Date(note.createdAt).toLocaleTimeString('en-US')}
