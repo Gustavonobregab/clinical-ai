@@ -43,7 +43,7 @@ export default function PatientsPage({ patients }: PatientsPageProps) {
         ) : (
             <div className="divide-y divide-gray-200">
               {patientsList.map((patient) => (
-                <Link key={patient.id} href={`/notes/${patient.id}`}>
+                <Link key={patient.id} href={`/patients/${patient.id}`}>
                   <div className="p-6 hover:bg-gray-50 transition-colors cursor-pointer">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">

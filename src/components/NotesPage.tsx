@@ -34,11 +34,16 @@ export default function NotesPage({ notes }: NotesPageProps) {
             <div key={note.id} className="p-6 hover:bg-gray-50 transition-colors">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <p className="text-gray-900 whitespace-pre-wrap">
-                    {note.content}
-                  </p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {note.patient?.name}
+                  </h3>
+                  {note.rawText && (
+                    <p className="text-gray-900 whitespace-pre-wrap mb-3">
+                      {note.rawText.length > 20 ? `${note.rawText.substring(0, 20)}...` : note.rawText}
+                    </p>
+                  )}
                   <p className="text-xs text-gray-500 mt-2">
-                    Created on {new Date(note.createdAt).toLocaleDateString('en-US')} at {new Date(note.createdAt).toLocaleTimeString('en-US')}
+                    {new Date(note.createdAt).toLocaleDateString('en-US')}
                   </p>
                 </div>
                 <div className="flex items-center space-x-2 ml-4">

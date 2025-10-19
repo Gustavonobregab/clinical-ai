@@ -16,11 +16,15 @@ export interface Patient {
 
 export interface Note {
   id: number;
-  content: string;
-  patientId: number;
-  patient?: Patient;
+  inputType: string;
+  rawText: string;
+  summary: string;
+  audioUrl: string;
+  aiMeta: unknown;
+  status: string;
   createdAt: Date;
   updatedAt: Date;
+  patient?: Patient;
 }
 
 export interface GetPatientsResponse {
