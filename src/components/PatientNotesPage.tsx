@@ -1,5 +1,9 @@
+'use client';
+
 import { GetPatientResponse, GetNotesResponse } from '@/types';
 import Link from 'next/link';
+import { useState } from 'react';
+import NewNoteModal from './NewNoteModal';
 
 interface PatientNotesPageProps {
   patient: GetPatientResponse;
@@ -9,6 +13,7 @@ interface PatientNotesPageProps {
 export default function PatientNotesPage({ patient, notes }: PatientNotesPageProps) {
   const patientData = patient.data;
   const notesList = notes.data || [];
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="p-6">
@@ -23,6 +28,15 @@ export default function PatientNotesPage({ patient, notes }: PatientNotesPagePro
             </p>
           </div>
           <div className="flex items-center space-x-3">
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition-colors"
+            >
+              <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              New Note
+            </button>
             <Link 
               href="/patients" 
               className="inline-flex items-center px-4 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors"
@@ -76,6 +90,13 @@ export default function PatientNotesPage({ patient, notes }: PatientNotesPagePro
           ))}
         </div>
       </div>
+
+      <NewNoteModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        patientId={patientData.id}
+        patientName={patientData.name}
+      />
     </div>
   );
 }
