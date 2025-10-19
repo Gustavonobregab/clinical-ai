@@ -22,9 +22,9 @@ export const apiClient = ky.create({
 });
 
 export const api = {
-  get: (url: string, options?: any) => apiClient.get(url, options),
-  post: (url: string, options?: any) => apiClient.post(url, options),
-  put: (url: string, options?: any) => apiClient.put(url, options),
-  patch: (url: string, options?: any) => apiClient.patch(url, options),
-  delete: (url: string, options?: any) => apiClient.delete(url, options),
+  get: (url: string, options?: RequestInit) => apiClient.get(url, options),
+  post: (url: string, options?: RequestInit) => apiClient.post(url, options),
+  put: (url: string, options?: RequestInit) => apiClient.put(url, options),
+  patch: (url: string, options?: RequestInit) => apiClient.patch(url, options),
+  delete: (url: string, options?: RequestInit) => apiClient.delete(url, options),
 };

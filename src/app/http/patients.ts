@@ -5,9 +5,8 @@ import type {
   GetPatientsResponse, 
   GetPatientResponse, 
   CreatePatientRequest, 
-  UpdatePatientRequest,
-  Patient 
-} from '../types/index';
+  UpdatePatientRequest
+} from '../../types/index';
 
 export async function getPatients(): Promise<GetPatientsResponse> {
   const result = await serverApi.get('patients').json<GetPatientsResponse>();
@@ -15,27 +14,17 @@ export async function getPatients(): Promise<GetPatientsResponse> {
 }
 
 export async function getPatientById(id: number): Promise<GetPatientResponse> {
-  const result = await serverApi.get(`/patients/${id}`).json<GetPatientResponse>();
+  const result = await serverApi.get(`patients/${id}`).json<GetPatientResponse>();
   return result;
 }
 
-export async function createPatient(patientData: CreatePatientRequest): Promise<GetPatientResponse> {
-  const result = await serverApi.post('/patients', { 
-    json: patientData 
-  }).json<GetPatientResponse>();
+
+export async function deletePatient(id: number): Promise<{ success: boolean; message?: string }> {
+  const result = await serverApi.delete(`patients/${id}`).json<{ success: boolean; message?: string }>();
   return result;
 }
-
-export async function updatePatient(patientData: UpdatePatientRequest): Promise<GetPatientResponse> {
-  const { id, ...updateData } = patientData;
-  const result = await serverApi.put(`/patients/${id}`, { 
-    json: updateData 
-  }).json<GetPatientResponse>();
-  return result;
-}
-
 
 export async function searchPatients(query: string): Promise<GetPatientsResponse> {
-  const result = await serverApi.get(`/patients/search?q=${encodeURIComponent(query)}`).json<GetPatientsResponse>();
+  const result = await serverApi.get(`patients/search?q=${encodeURIComponent(query)}`).json<GetPatientsResponse>();
   return result;
 }

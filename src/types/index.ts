@@ -1,4 +1,4 @@
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data: T;
   message?: string;
@@ -45,4 +45,28 @@ export interface UpdatePatientRequest {
   id: number;
   name?: string;
   dob?: string | null;
+}
+
+export interface GetNotesResponse {
+  success: boolean;
+  data: Note[];
+  total: number;
+  message?: string;
+}
+
+export interface GetNoteResponse {
+  success: boolean;
+  data: Note;
+  message?: string;
+}
+
+export interface CreateNoteRequest {
+  content: string;
+  patientId: number;
+}
+
+export interface UpdateNoteRequest {
+  id: number;
+  content?: string;
+  patientId?: number;
 }
