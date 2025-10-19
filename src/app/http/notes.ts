@@ -28,3 +28,8 @@ export async function deleteNote(id: number): Promise<{ success: boolean; messag
   const result = await serverApi.delete(`notes/${id}`).json<{ success: boolean; message?: string }>();
   return result;
 }
+
+export async function processNote(id: number): Promise<{ success: boolean; aiMeta?: unknown; message?: string }> {
+  const result = await serverApi.post(`notes/${id}/process`).json<{ success: boolean; aiMeta?: unknown; message?: string }>();
+  return result;
+}

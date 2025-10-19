@@ -20,7 +20,7 @@ export interface Note {
   rawText: string;
   summary: string;
   audioUrl: string;
-  aiMeta: unknown;
+  aiMeta: AiMeta | null;
   status: string;
   createdAt: Date;
   updatedAt: Date;
@@ -73,4 +73,60 @@ export interface UpdateNoteRequest {
   id: number;
   content?: string;
   patientId?: number;
+}
+
+export interface FollowUp {
+  action: string;
+  deadline: string;
+  responsible_party: string;
+}
+
+export interface RiskFlag {
+  risk: string;
+  severity: string;
+}
+
+export interface ICD10Code {
+  code: string;
+  description: string;
+  confidence?: number;
+}
+
+export interface OASISFields {
+  mobility?: string;
+  pain_level?: string;
+  cognitive_function?: string;
+  medication_management?: string;
+  adl_score?: string;
+  [key: string]: string | undefined;
+}
+
+export interface DischargeReport {
+  date?: string;
+  admission_reason?: string;
+  treatment_summary?: string;
+  progress?: string;
+  follow_up_recommendations?: string;
+}
+
+export interface SOAPSummary {
+  subjective: string;
+  objective: string;
+  assessment: string;
+  plan: string;
+}
+
+export interface ClinicalInsights {
+  keywords: string[];
+  follow_ups: FollowUp[];
+  risk_flags: RiskFlag[];
+  urgency_level: string;
+}
+
+export interface AiMeta {
+  insights: ClinicalInsights;
+  icd10_codes: ICD10Code[];
+  oasis: OASISFields;
+  discharge_report: DischargeReport;
+  processedAt: string;
 }
