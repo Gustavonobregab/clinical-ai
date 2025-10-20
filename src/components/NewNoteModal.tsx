@@ -18,7 +18,6 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
   const [selectedType, setSelectedType] = useState<NoteType>(null);
   const [noteText, setNoteText] = useState('');
   const [audioFile, setAudioFile] = useState<File | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sampleMedicalText = `Patient presents with:
 - Chief complaint: Chest pain and shortness of breath
@@ -85,7 +84,7 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
       
       if (result.success) {
         handleClose();
-        router.push(`/note/${result.data.id}`);
+        router.push(`/note/${result.data?.id}`);
       }
     } catch (error) {
       console.error('Error creating note:', error);

@@ -70,6 +70,12 @@ export interface CreateNoteRequest {
   rawText?: string;
 }
 
+export interface CreateNoteResponse {
+  success: boolean;
+  data?: Note;
+  message?: string;
+}
+
 export interface UpdateNoteRequest {
   id: number;
   content?: string;

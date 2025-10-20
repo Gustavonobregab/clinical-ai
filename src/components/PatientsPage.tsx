@@ -1,7 +1,7 @@
 import { GetPatientsResponse } from '@/types';
 import Link from 'next/link';
 import React from 'react';
-import { ArrowRight, User, Calendar, FileText } from 'lucide-react';
+import { User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface PatientsPageProps {
@@ -19,7 +19,7 @@ export default function PatientsPage({ patients }: PatientsPageProps) {
         </h1>
         <div className="flex flex-col">
           <div className="border-b border-gray-200"></div>
-          {patientsList.map((patient, index) => (
+          {patientsList.map((patient) => (
             <React.Fragment key={patient.id}>
               <div className="grid items-center gap-4 px-4 py-5 md:grid-cols-4">
                 <div className="order-2 flex items-center gap-2 md:order-none">

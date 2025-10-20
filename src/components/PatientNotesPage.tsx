@@ -3,7 +3,7 @@
 import { GetPatientResponse, GetNotesResponse } from '@/types';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { ArrowRight, FileText, Calendar, User } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import NewNoteModal from './NewNoteModal';
 
@@ -58,7 +58,7 @@ export default function PatientNotesPage({ patient, notes }: PatientNotesPagePro
 
         <div className="flex flex-col">
           <div className="border-b border-gray-200"></div>
-          {notesList.map((note, index) => (
+          {notesList.map((note) => (
             <React.Fragment key={note.id}>
               <div className="grid items-center gap-4 px-4 py-5 md:grid-cols-4">
                 <div className="order-2 flex items-center gap-2 md:order-none">

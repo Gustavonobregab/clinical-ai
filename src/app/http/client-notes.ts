@@ -1,7 +1,7 @@
-import type { CreateNoteRequest } from '@/types';
+import type { CreateNoteRequest, CreateNoteResponse } from '@/types';
 import { api } from './api';
 
-export async function createNote(noteData: CreateNoteRequest, file?: File): Promise<{ success: boolean; data?: any; message?: string }> {
+export async function createNote(noteData: CreateNoteRequest, file?: File): Promise<CreateNoteResponse> {
   const formData = new FormData();
   
   formData.append('patientId', noteData.patientId.toString());
@@ -15,5 +15,5 @@ export async function createNote(noteData: CreateNoteRequest, file?: File): Prom
   
   return api.post('notes', {
     body: formData,
-  }).json<{ success: boolean; data?: any; message?: string }>();
+  }).json<CreateNoteResponse>();
 }
