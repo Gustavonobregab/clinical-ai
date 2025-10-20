@@ -2,28 +2,13 @@ import { GetNoteResponse } from '@/types';
 import Link from 'next/link';
 import TranscriptionCard from './TranscriptionCard';
 import AIAnalysisCard from './AIAnalysisCard';
-import { Spinner } from './ui/spinner';
 
 interface NoteDetailPageProps {
   note: GetNoteResponse;
-  isLoading?: boolean;
 }
 
-export default function NoteDetailPage({ note, isLoading = false }: NoteDetailPageProps) {
+export default function NoteDetailPage({ note }: NoteDetailPageProps) {
   const noteData = note.data;
-
-  if (isLoading) {
-    return (
-      <div className="p-6">
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-center">
-            <Spinner className="h-8 w-8 mx-auto mb-4" />
-            <p className="text-gray-600">Loading note details...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="p-6">
