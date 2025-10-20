@@ -4,7 +4,7 @@ interface TranscriptionCardProps {
 
 export default function TranscriptionCard({ rawText }: TranscriptionCardProps) {
   return (
-    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6 mr-4">
+    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
       <h2 className="text-lg font-semibold text-gray-900 mb-4">Transcription</h2>
       
       {rawText && (

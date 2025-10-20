@@ -67,7 +67,7 @@ export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
   };
 
   return (
-    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6 ml-4">
+    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-gray-900">Generate Report with AI</h2>
         <div className="flex space-x-2">
