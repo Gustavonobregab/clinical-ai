@@ -22,12 +22,32 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
 
   const sampleMedicalText = `Patient presents with:
 - Chief complaint: Chest pain and shortness of breath
-- History of present illness: 45-year-old male with acute onset chest pain radiating to left arm, associated with diaphoresis and nausea
-- Past medical history: Hypertension, diabetes mellitus type 2
-- Medications: Metformin 500mg BID, Lisinopril 10mg daily
-- Physical examination: Vital signs stable, no acute distress, heart rate regular, no murmurs
-- Assessment: Possible acute coronary syndrome vs musculoskeletal chest pain
-- Plan: EKG, cardiac enzymes, chest X-ray, cardiology consultation`;
+- History of present illness: 45-year-old male with acute onset chest pain radiating to left arm, associated with diaphoresis and nausea. Symptoms started approximately 2 hours ago while at rest. Patient describes pain as pressure-like, 8/10 in intensity. No relief with rest or position changes. Denies fever, cough, or recent illness.
+- Past medical history: Hypertension (diagnosed 2018), diabetes mellitus type 2 (diagnosed 2020), hyperlipidemia, GERD
+- Current medications: Metformin 500mg BID, Lisinopril 10mg daily, Atorvastatin 20mg daily, Aspirin 81mg daily, Omeprazole 20mg daily
+- Allergies: NKDA (no known drug allergies)
+- Social history: Non-smoker, occasional alcohol use (2-3 drinks per week), works as office manager, exercises 2-3 times per week
+- Family history: Father with MI at age 65, mother with diabetes, maternal grandmother with breast cancer
+- Review of systems: Positive for chest pain, shortness of breath, diaphoresis. Negative for headache, dizziness, abdominal pain, nausea, vomiting, diarrhea, urinary symptoms
+- Physical examination: 
+  - Vital signs: BP 145/90, HR 95 bpm, RR 18, O2 sat 98% on room air, afebrile, weight 180 lbs
+  - General: No acute distress, well-appearing male
+  - HEENT: Normocephalic, atraumatic, PERRL, EOMI, no cervical lymphadenopathy
+  - Cardiovascular: Regular rate and rhythm, no murmurs, rubs, or gallops, no JVD
+  - Pulmonary: Clear to auscultation bilaterally, no wheezing, rales, or rhonchi
+  - Abdomen: Soft, non-tender, non-distended, normal bowel sounds
+  - Extremities: Warm, no edema, pulses intact
+  - Neurological: Alert and oriented x3, no focal deficits
+- Laboratory results: Pending - EKG ordered, cardiac enzymes ordered
+- Assessment: Possible acute coronary syndrome vs musculoskeletal chest pain vs GERD. Given patient's age, risk factors (hypertension, diabetes, family history), and symptom presentation, ACS cannot be ruled out. Differential diagnosis includes costochondritis, anxiety, and esophageal spasm.
+- Plan: 
+  - EKG, cardiac enzymes (troponin I), chest X-ray, CBC, CMP, lipid panel
+  - Cardiology consultation for further evaluation
+  - Continue current medications
+  - Patient counseled on symptoms to watch for and when to return to ED
+  - Follow-up in 1-2 days or sooner if symptoms worsen
+  - Consider stress test if initial workup negative
+  - Lifestyle counseling regarding diet and exercise`;
 
   const downloadSampleAudio = () => {
     const link = document.createElement('a');
@@ -168,9 +188,9 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
                 </p>
                 <button
                   onClick={copySampleText}
-                  className="inline-flex items-center px-2 py-1 bg-black text-white text-xs font-medium rounded-md hover:bg-gray-800 transition-colors"
+                  className="inline-flex items-center px-3 py-1 bg-black text-white text-xs font-medium rounded-md hover:bg-gray-800 transition-colors"
                 >
-                  Use sample text
+                  Use sample medical note
                 </button>
               </div>
               <textarea

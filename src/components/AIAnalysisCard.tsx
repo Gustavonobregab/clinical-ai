@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { processNote, getNoteById } from '@/app/http/notes';
 import { Note, AiMeta, SOAPSummary } from '@/types';
 
@@ -17,6 +18,7 @@ function isAiMeta(data: unknown): data is AiMeta {
 }
 
 export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
+  const router = useRouter();
   const [isGenerating, setIsGenerating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [aiMeta, setAiMeta] = useState<AiMeta | null>(null);
@@ -48,11 +50,8 @@ export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
     setIsGenerating(true);
     try {
       const result = await processNote(noteId);
-      if (result.success && result.aiMeta && isAiMeta(result.aiMeta)) {
-        setAiMeta(result.aiMeta);
-        if (noteData) {
-          setNoteData({ ...noteData, aiMeta: result.aiMeta });
-        }
+      if (result.success) {
+        router.refresh();
       }
     } catch (error) {
       console.error('Error generating analysis:', error);
@@ -275,14 +274,14 @@ export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
 
                   {activeTab === 'intake' && (
                     <div className="space-y-4">
-                      <div className="border border-gray-200 rounded-md p-4">
+                      <div className="p-4">
                         <h4 className="text-sm font-semibold text-gray-900 mb-3">Original Note Content</h4>
                         <div className="space-y-4">
                           
                           {noteData?.rawText && (
                             <div>
                               <h5 className="text-xs font-medium text-gray-700 uppercase tracking-wide mb-2">Transcription</h5>
-                              <p className="text-sm text-gray-900 bg-gray-50 p-3 rounded border">
+                              <p className="text-sm text-gray-900 bg-gray-50 p-3 rounded">
                                 {noteData?.rawText}
                               </p>
                             </div>
@@ -291,7 +290,7 @@ export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
                           {noteData?.summary && (
                             <div>
                               <h5 className="text-xs font-medium text-gray-700 uppercase tracking-wide mb-2">SOAP Summary</h5>
-                              <div className="space-y-2 bg-gray-50 p-3 rounded border">
+                              <div className="space-y-2 bg-gray-50 p-3 rounded">
                                 {(() => {
                                   try {
                                     const soap: SOAPSummary = JSON.parse(noteData.summary);
