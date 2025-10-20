@@ -51,7 +51,13 @@ export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
     try {
       const result = await processNote(noteId);
       if (result.success) {
-        router.refresh();
+        const response = await getNoteById(noteId);
+        if (response.success) {
+          setNoteData(response.data);
+          if (isAiMeta(response.data.aiMeta)) {
+            setAiMeta(response.data.aiMeta);
+          }
+        }
       }
     } catch (error) {
       console.error('Error generating analysis:', error);
