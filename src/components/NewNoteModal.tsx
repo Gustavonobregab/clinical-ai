@@ -18,6 +18,7 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
   const [selectedType, setSelectedType] = useState<NoteType>(null);
   const [noteText, setNoteText] = useState('');
   const [audioFile, setAudioFile] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sampleMedicalText = `Patient presents with:
 - Chief complaint: Chest pain and shortness of breath
@@ -63,6 +64,7 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
     setSelectedType(null);
     setNoteText('');
     setAudioFile(null);
+    setIsSubmitting(false);
     onClose();
   };
 
@@ -70,9 +72,11 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
     setSelectedType(null);
     setNoteText('');
     setAudioFile(null);
+    setIsSubmitting(false);
   };
 
   const handleSubmit = async () => {
+    setIsSubmitting(true);
     try {
       const noteData = {
         patientId,
@@ -81,13 +85,18 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
       };
 
       const result = await createNote(noteData, audioFile || undefined);
+      console.log('Create note result:', result);
       
-      if (result.success) {
+      if (result.success && result.data?.id) {
         handleClose();
-        router.push(`/note/${result.data?.id}`);
+        window.location.href = `/note/${result.data.id}`;
+      } else {
+        console.error('Failed to create note:', result);
       }
     } catch (error) {
       console.error('Error creating note:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -207,10 +216,10 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
                 </button>
                 <button
                   onClick={handleSubmit}
-                  disabled={!noteText.trim()}
+                  disabled={!noteText.trim() || isSubmitting}
                   className="inline-flex items-center px-3 py-1 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Create Note
+                  {isSubmitting ? 'Creating...' : 'Create Note'}
                 </button>
               </div>
             </div>
@@ -256,10 +265,10 @@ export default function NewNoteModal({ isOpen, onClose, patientId, patientName }
                 </button>
                 <button
                   onClick={handleSubmit}
-                  disabled={!audioFile}
+                  disabled={!audioFile || isSubmitting}
                   className="inline-flex items-center px-3 py-1 bg-black text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Upload & Process
+                  {isSubmitting ? 'Processing...' : 'Upload & Process'}
                 </button>
               </div>
             </div>
