@@ -99,7 +99,7 @@ export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
                         : 'text-gray-500 hover:text-gray-700'
                     }`}
                   >
-                    ICD-10 Codes
+                    ICD10
                   </button>
                   <button
                     onClick={() => setActiveTab('oasis')}
@@ -119,7 +119,7 @@ export default function AIAnalysisCard({ noteId }: AIAnalysisCardProps) {
                         : 'text-gray-500 hover:text-gray-700'
                     }`}
                   >
-                    Discharge Report
+                    Discharge
                   </button>
                   <button
                     onClick={() => setActiveTab('intake')}

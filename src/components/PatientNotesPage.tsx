@@ -21,7 +21,7 @@ export default function PatientNotesPage({ patient, notes }: PatientNotesPagePro
     <section className="py-32">
       <div className="container px-0 md:px-8">
         <div className="mb-8 px-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
               <h1 className="text-3xl font-semibold md:text-4xl mb-2">
                 Notes for {patientData.name}
